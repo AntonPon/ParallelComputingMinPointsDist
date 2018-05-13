@@ -5,7 +5,7 @@ import parallel._
 import scala.annotation.tailrec
 import scala.util.Random
 
-object ParalleCountPoints {
+object ParallelCountPoints {
 
   def closest_pair(points: Seq[(Int, Int)]): (Double, Seq[(Int, Int)]) = {
 
