@@ -19,9 +19,9 @@ object ParalleCountPoints {
 
 
     def boundaryMerge(seqMerged: Seq[(Int, Int)], deltaL: Double, deltaR: Double, median: Double ): Double = {
-      var deltaMin = Math.min(deltaL, deltaR)
+      val deltaMin = Math.min(deltaL, deltaR)
       val m = seqMerged.partition(point => point._1 >= median - deltaMin || point._1 <= median + deltaMin)._1
-      val numberOfExamples = Math.min(8, m.length - 2)
+      //val numberOfExamples = Math.min(8, m.length - 2)
 
       def distance(left: (Int, Int), right: (Int, Int)): Double = {
         Math.sqrt(Math.pow(left._1 - right._1, 2) + Math.pow(left._2 - right._2, 2))
@@ -110,16 +110,16 @@ object ParalleCountPoints {
       val timeStart = System.currentTimeMillis()
       val (dist, points) = closest_pair(seq)
       val parallelTime = (System.currentTimeMillis() - timeStart)/100
-      println(s"parallel end ${parallelTime}")
-      println(s"the distance computed by parallel ${dist}")
+      println(s"parallel end $parallelTime")
+      println(s"the distance computed by parallel $dist")
 
 
       val timeStartPar = System.currentTimeMillis()
       val distNotPar = seqClosestPair(seq, 0, seq.length-1, Double.PositiveInfinity)
       val nonParallelTime = (System.currentTimeMillis() - timeStartPar)/100
-      println(s"non parallel end ${ nonParallelTime}")
-      println(s"the distance computed by non-parallel ${distNotPar}")
-      println(s"the speedup for ${totalNumberOfPoints} points is  ${nonParallelTime/parallelTime}")
+      println(s"non parallel end $nonParallelTime")
+      println(s"the distance computed by non-parallel $distNotPar")
+      println(s"the speedup for $totalNumberOfPoints points is  ${nonParallelTime/parallelTime}")
       idx += 1
 
     }
